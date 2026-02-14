@@ -1,0 +1,35 @@
+html {
+    scrollbar-color: #6f7bb0 #ffe9da;
+}
+body {
+    font-family: "Verdana";
+    text-align: center;
+    background-color: rgb(209, 250, 153);
+    color: black;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+footer {
+    font-family: "Verdana";
+    font-size: 12px;
+}
+h1 {    
+    font-family: "Verdana";
+    font-size: 40px;
+}
+h2 {
+    font-family: "Verdana";
+    font-size: 24px;
+}
+h3 {
+    font-family: "Verdana";
+}
+p {
+    font-family: "Verdana";
+    font-size: 18px;
+}
