@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>my gallery</title>
+        <link rel="icon" href="images/icon.jpg">
+        <link href="style.css" rel="stylesheet" type="text/css" media="all">
+      </head>
+<style>
+* {
+  box-sizing: border-box;
+}
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+.column {
+  -ms-flex: 25%;
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 4px;
+}
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+</style>
+
+<body>
+
+    <a href="index.html"><img src="sourceimg/logo.png" width="256" height="142"/></a>
+    <h2>photo gallery</h2>
+    <div>
+        <!-- the buttons to the other pages-->
+        <a href='index.html'><img src="images/home.gif" style="display:inline-block;"></a>
+        <a href='printer.html'><img src="images/print.gif" style="display:inline-block;"></a>
+        <a href='ttc.html'><img src="images/ttc.gif" style="display:inline-block;"></a>
+        <a href='oc.html'><img src="images/oc.gif" style="display:inline-block;"></a>
+        <a href='gallery.html'><img src="images/gallery.gif" style="display:inline-block;"></a>
+    </div>
+<p>some pictures</p>
+<div class="row"> 
+  <div class="column">
+    <img src="gallery/20230809_100433.jpg" style="width:90%">
+    <img src="gallery/20250701_203600.jpg" style="width:90%">
+    <img src="gallery/20250701_203510.jpg" style="width:90%">
+    <img src="gallery/20250602_204602.jpg" style="width:90%">
+    <img src="gallery/20250519_170910.jpg" style="width:90%">
+    <img src="gallery/20250428_173041.jpg" style="width:90%">
+  </div>
+  <div class="column">
+    <img src="gallery/20250116_094248.jpg" style="width:90%">
+    <img src="gallery/20241102_154923.jpg" style="width:90%">
+    <img src="gallery/20240824_195258.jpg" style="width:90%">
+    <img src="gallery/20240629_153704.jpg" style="width:90%">
+    <img src="gallery/20240629_151526.jpg" style="width:90%">
+  </div>  
+  <div class="column">
+    <img src="gallery/20240426_151624.jpg" style="width:90%">
+    <img src="gallery/20240121_143115.jpg" style="width:90%">
+    <img src="gallery/20230811_102154.jpg" style="width:90%">
+    <img src="gallery/20230517_163935.jpg" style="width:90%">
+    <img src="gallery/20230423_181717.jpg" style="width:90%">
+    <img src="gallery/20230311_170918.jpg" style="width:90%">
+  </div>
+  <div class="column">
+    <img src="gallery/20230311_163422.jpg" style="width:90%">
+    <img src="gallery/20230311_152403.jpg" style="width:90%">
+    <img src="gallery/20230125_174659.jpg" style="width:90%">
+    <img src="gallery/20221109_195635.jpg" style="width:90%">
+    <img src="gallery/20221102_204942.jpg" style="width:90%">
+  </div>
+</div>
+
+  <div style="text-align: center;">
+    <h3>hello there</h3>
+  </div>
+  <div>
+    <!-- links and blocks at the bottom-->
+    <a href='index.html'><img src="images/path" style="display:inline-block;"></a>
+  </div>
+<footer>
+  55frankwu@gmail.com | yesterday-today
+</footer>
+</body>
+</html>
