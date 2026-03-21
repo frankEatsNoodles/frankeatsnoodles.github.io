@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const reader = new FileReader();
             
             reader.onload = function() {
-                //getting the base64
                 const result = reader.result;
                 const base64String = result.substring(result.indexOf(',') + 1);
                 
