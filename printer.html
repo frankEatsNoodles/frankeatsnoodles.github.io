@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>my gallery</title>
+        <link rel="icon" href="images/icon.jpg">
+        <link href="style.css" rel="stylesheet" type="text/css" media="all">
+      </head>
+
+<body>
+
+    <a href="index.html"><img src="sourceimg/logo.png" width="256" height="142"/></a>
+    <h2>photo gallery</h2>
+    <div>
+        <!-- the buttons to the other pages-->
+        <a href='index.html'><img src="images/home.gif" style="display:inline-block;"></a>
+        <a href='printer.html'><img src="images/print.gif" style="display:inline-block;"></a>
+        <a href='gallery.html'><img src="images/gallery.gif" style="display:inline-block;"></a>
+    </div>
+<p>some pictures</p>
+<div class="row"> 
+    <div style="margin: 2rem 0;">
+  <div style="border: 1px solid #ccc; padding: 1.5rem; max-width: 500px; width: 100%; margin: 0 auto;">
+            <h3 style="margin-top: 0;">upload & send an image!</h3>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <label for="imageFile">choose image (jpg, png):</label>
+                <br><br>
+                <input type="file" id="imageFile" name="image" accept="image/*" required>
+                <br><br>
+                <label for="imageTitle">title:</label>
+                <input type="text" id="imageTitle" name="title" placeholder="custom name" value="name">
+                <br><br>
+                <button type="submit">send!</button>
+            </form>
+            <div id="uploadStatus" style="margin-top: 1rem; font-family: monospace; font-size: 0.9rem;"></div>
+        </div>
+    </div>
+
+    <div class="row"> 
+</div>
+
+  <div style="text-align: center;">
+    <h3>hello there</h3>
+  </div>
+  <div>
+    <!-- links and blocks at the bottom-->
+    <a href='index.html'><img src="images/path" style="display:inline-block;"></a>
+  </div>
+<footer>
+  55frankwu@gmail.com | yesterday-today
+</footer>
+<script src="upload.js"></script>
+</body>
+</html>
