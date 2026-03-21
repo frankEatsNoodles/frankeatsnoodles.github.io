@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('[EVENT] form submit triggered');
         event.preventDefault();
 
-        const imageFileInput = document.getElementById('imageFile');
+        const imageFileInput = document.getElementById('fileInput');
         const titleInput = document.getElementById('imageTitle');
 
         if (!imageFileInput) {
