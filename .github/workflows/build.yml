@@ -8,40 +8,100 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Create package.json if it doesn't exist
+      - name: Create package.json if missing
         run: |
           if [ ! -f "package.json" ]; then
-            echo "Creating package.json..."
             npm init -y
-            echo '{"type": "module"}' > package.temp.json && jq -s '.[0] * .[1]' package.json package.temp.json > temp.json && mv temp.json package.json
-            rm -f package.temp.json
+            npm pkg set scripts.build="vite build"
+            npm pkg set type="module"
           fi
 
-      - name: Install dependencies (Vite for building)
+      - name: Create vite.config.js if needed
         run: |
-          npm install --save-dev vite
-          # Add other dependencies as needed
-          # npm install react react-dom  # For React
-          # npm install --save-dev @vitejs/plugin-react  # For React with Vite
+          if [ ! -f "vite.config.js" ] && [ ! -f "vite.config.ts" ]; then
+            echo 'import { defineConfig } from "vite"' > vite.config.js
+            echo '' >> vite.config.js
+            echo 'export default defineConfig({' >> vite.config.js
+            echo '  build: {' >> vite.config.js
+            echo '    outDir: "dist"' >> vite.config.js
+            echo '  }' >> vite.config.js
+            echo '})' >> vite.config.js
+          fi
 
-      # Inject GitHub secrets as VITE_ environment variables
+      - name: Verify secrets
+        run: |
+          echo "========================================"
+          echo "SECRETS VERIFICATION"
+          echo "========================================"
+          
+          if [ -n "${{ secrets.API_KEY }}" ]; then
+            echo "[OK] API_KEY is set"
+            echo "  Length: $(echo -n "${{ secrets.API_KEY }}" | wc -c) characters"
+            echo "  Prefix: $(echo -n "${{ secrets.API_KEY }}" | cut -c1-4)..."
+          else
+            echo "[FAIL] API_KEY is NOT set"
+          fi
+          
+          echo ""
+          
+          if [ -n "${{ secrets.API_URL }}" ]; then
+            echo "[OK] API_URL is set"
+            echo "  Value: ${{ secrets.API_URL }}"
+          else
+            echo "[FAIL] API_URL is NOT set"
+          fi
+          
+          echo "========================================"
+
       - name: Inject secrets
         run: |
           echo "VITE_API_KEY=${{ secrets.API_KEY }}" >> .env
           echo "VITE_API_URL=${{ secrets.API_URL }}" >> .env
+          
+          echo "========================================"
+          echo ".env FILE CREATED"
+          echo "========================================"
+          echo "Contents (values masked):"
+          cat .env | sed 's/=.*$/=***/'
+          echo "========================================"
+
+      - name: Install dependencies
+        run: |
+          if [ -f "vite.config.js" ]; then
+            npm install --save-dev vite
+          fi
+          npm install
 
       - name: Build project
-        run: npx vite build
+        run: |
+          if grep -q '"build"' package.json; then
+            npm run build
+          else
+            npx vite build
+          fi
+
+      - name: Commit package.json if new
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add package.json vite.config.js 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "Add package.json [skip ci]"
+          git push
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
