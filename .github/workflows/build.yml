@@ -1,0 +1,37 @@
+name: Build with secrets
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # Inject GitHub secrets as VITE_ environment variables
+      - name: Inject secrets
+        run: |
+          echo "VITE_API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "VITE_API_URL=${{ secrets.API_URL }}" >> .env
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: dist
