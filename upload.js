@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const imageFileInput = document.getElementById('fileInput');
         const titleInput = document.getElementById('imageTitle');
+        const file = imageFileInput.files[0];
+        const filename = titleInput.value.trim() || 'name';
 
         if (!imageFileInput) {
             console.error('[ERROR] imageFile input not found');
@@ -28,14 +30,6 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadStatus.innerHTML = 'image please';
             return;
         }
-
-        if (!imageFileInput.type.startsWith('image/')) {
-            uploadStatus.innerHTML = 'file must be an image';
-        return;
-        }
-
-        const file = imageFileInput.files[0];
-        const filename = titleInput.value.trim() || 'name';
         
         if (!file.type.startsWith('image/')) {
             uploadStatus.innerHTML = 'file must be an image';
