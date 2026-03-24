@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const imageFileInput = document.getElementById('fileInput');
         const titleInput = document.getElementById('imageTitle');
-        const file = imageFileInput.files[0];
-        const filename = titleInput.value.trim() || 'name';
 
         if (!imageFileInput) {
             console.error('[ERROR] imageFile input not found');
@@ -30,7 +28,10 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadStatus.innerHTML = 'image please';
             return;
         }
-        
+
+        const file = imageFileInput.files[0];
+        const filename = titleInput.value.trim() || 'name';
+
         if (!file.type.startsWith('image/')) {
             uploadStatus.innerHTML = 'file must be an image';
             return;
@@ -62,7 +63,6 @@ document.addEventListener('DOMContentLoaded', function() {
             fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                    'key': apiKey,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(requestBody)
@@ -73,13 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (response.ok) {
                     uploadStatus.innerHTML = 'image sent successfully';
-                } else {
-                    uploadStatus.innerHTML = 'API error: ' + response.status;
-                }
+                } 
             })
             .catch(function(error) {
-                console.error('[FETCH ERROR]', error);
-                uploadStatus.innerHTML = 'error: ' + error.message;
+                uploadStatus.innerHTML = "Error! (too many requests or printing turned off)"
             });
         };
 
