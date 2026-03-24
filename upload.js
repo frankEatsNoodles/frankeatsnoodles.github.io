@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', function() {
             uploadStatus.innerHTML = 'image please';
             return;
         }
-        
-        if (!file.type.startsWith('image/')) {
+
+        if (!imageFileInput.type.startsWith('image/')) {
             uploadStatus.innerHTML = 'file must be an image';
         return;
         }
