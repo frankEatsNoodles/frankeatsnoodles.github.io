@@ -1,7 +1,4 @@
-console.log("hi");
-const apiKey = "ldP3aZ67rNfUj3RqQNtc";
 const apiUrl = "https://desktop-ojk12ss.tailb5236b.ts.net/print";
-console.log(apiUrl);
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('[INIT] DOM loaded');
@@ -30,6 +27,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('[VALIDATION] no file selected');
             uploadStatus.innerHTML = 'image please';
             return;
+        }
+        
+        if (!file.type.startsWith('image/')) {
+            uploadStatus.innerHTML = 'file must be an image';
+        return;
         }
 
         const file = imageFileInput.files[0];
