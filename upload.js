@@ -36,6 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const file = imageFileInput.files[0];
         const filename = titleInput.value.trim() || 'name';
+        
+        if (!file.type.startsWith('image/')) {
+            uploadStatus.innerHTML = 'file must be an image';
+            return;
+        }
 
         console.log('[FILE] name:', file.name);
         console.log('[FILE] size (bytes):', file.size);
