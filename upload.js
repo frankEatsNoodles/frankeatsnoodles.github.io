@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const file = imageFileInput.files[0];
         const filename = titleInput.value.trim() || 'name';
 
-        if (!file.type.startsWith('image/')) {
-            uploadStatus.innerHTML = 'file must be an image';
+        if (!['image/jpeg', 'image/png'].includes(file.type)) {
+            uploadStatus.innerHTML = 'file must be JPG, JPEG, or PNG';
             return;
         }
 
