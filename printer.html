@@ -19,23 +19,26 @@
         <a href='gallery.html'><img src="images/gallery.gif" style="display:inline-block;"></a>
     </div>
 <p>my receipt printer:</p>
-<form id="uploadForm" enctype="multipart/form-data" style="display: inline-block; border: 2px solid #333; padding: 20px; margin-bottom: 20px; border-radius: 8px; background-color: #f9f9f9;">
+<div style="text-align: center;">
+  <div id="uploadStatus" style="display: inline-block; border: 2px solid #333; padding: 20px; margin-top: 1rem; border-radius: 8px; background-color: #f9f9f9; font-family: monospace; font-size: 0.9rem; width: 300px; text-align: left;">lets get printing!</div>
+</div>
+<br>
+<form id="uploadForm" enctype="multipart/form-data" style="display: inline-block; border: 2px solid #333; padding: 20px; margin-bottom: 20px; border-radius: 8px; background-color: #f9f9f9; width: 300px;">
   <label>send picture:</label>
   <br><br>
-  <input type="file" id="fileInput" name="filetoupload">
+  <input type="file" id="fileInput" name="filetoupload" style="width: 100%;">
   <br><br>
   <button type="submit">Send image!</button>
 </form>
 <br>
-<form id="uploadText" enctype="multipart/form-data" style="display: inline-block; border: 2px solid #333; padding: 20px; margin-bottom: 20px; border-radius: 8px; background-color: #f9f9f9;">
+<form id="uploadText" enctype="multipart/form-data" style="display: inline-block; border: 2px solid #333; padding: 20px; margin-bottom: 20px; border-radius: 8px; background-color: #f9f9f9; width: 300px;">
   <label>send text:</label>
   <br><br>
-  <textarea id="userText" name="userText" rows="4" cols="50" placeholder="Enter your text here..."></textarea>
+  <textarea id="userText" name="userText" rows="4" style="width: 100%;" placeholder="Enter your text here..."></textarea>
   <br><br>
   <button type="submit">Send message!</button>
 </form>
 <p id="fileNameDisplay"></p>
-<div id="uploadStatus" style="margin-top: 1rem; font-family: monospace; font-size: 0.9rem;"></div>
 <div class="row"></div>
 </div>
 
