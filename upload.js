@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const uploadText = document.getElementById("uploadText");
     const uploadStatus = document.getElementById('uploadStatus');
 
-    uploadText.addEventListener("submitText"), function(event)  {
+    // Text form submission
+    uploadText.addEventListener("submit", function(event) {
         event.preventDefault();
 
         const textInput = document.getElementById("userText");
@@ -20,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const bytes = new TextEncoder().encode(text);
+        const bytes = new TextEncoder().encode(textInput.value);
         let binary = "";
         bytes.forEach(b => binary += String.fromCharCode(b));
         const base64String = btoa(binary);
@@ -28,33 +29,30 @@ document.addEventListener('DOMContentLoaded', function() {
         uploadStatus.innerHTML = 'sending to api ...';
 
         const requestBody = {
-                user: "frank",
-                filename: "Name",
-                fileBase64: base64String
-            };
+            user: "frank",
+            filename: "Name",
+            fileBase64: base64String
+        };
 
         fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestBody)
-            })
-            .then(function(response) {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        })
+        .then(function(response) {
+            if (response.ok) {
+                uploadStatus.innerHTML = 'text sent successfully';
+            } 
+        })
+        .catch(function(error) {
+            uploadStatus.innerHTML = "Error! (too many requests or printing turned off)";
+        });
+    });
 
-                if (response.ok) {
-                    uploadStatus.innerHTML = 'text sent successfully';
-                } 
-            })
-            .catch(function(error) {
-                uploadStatus.innerHTML = "Error! (too many requests or printing turned off)"
-            });
-    }
-
-
-
-
-    uploadForm.addEventListener('submitImage', function(event) {
+    // Image form submission
+    uploadForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
         const imageFileInput = document.getElementById('fileInput');
@@ -110,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } 
             })
             .catch(function(error) {
-                uploadStatus.innerHTML = "Error! (too many requests or printing turned off)"
+                uploadStatus.innerHTML = "Error! (too many requests or printing turned off)";
             });
         };
 
