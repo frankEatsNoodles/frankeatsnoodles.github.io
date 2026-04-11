@@ -1,25 +1,65 @@
 const apiUrl = "https://desktop-ojk12ss.tailb5236b.ts.net/print";
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('[INIT] DOM loaded');
 
     const uploadForm = document.getElementById('uploadForm');
+    const uploadText = document.getElementById("uploadText");
     const uploadStatus = document.getElementById('uploadStatus');
 
-    if (!uploadForm) {
-        console.error('[ERROR] uploadForm not found');
-        return;
+    uploadText.addEventListener("submitText"), function(event)  {
+        event.preventDefault();
+
+        const textInput = document.getElementById("userText");
+        
+        if (!textInput) {
+            return;
+        }
+
+        if (!textInput.value.trim()){
+            uploadStatus.innerHTML = "no text";
+            return;
+        }
+
+        const bytes = new TextEncoder().encode(text);
+        let binary = "";
+        bytes.forEach(b => binary += String.fromCharCode(b));
+        const base64String = btoa(binary);
+
+        uploadStatus.innerHTML = 'sending to api ...';
+
+        const requestBody = {
+                user: "frank",
+                filename: "Name",
+                fileBase64: base64String
+            };
+
+        fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            })
+            .then(function(response) {
+
+                if (response.ok) {
+                    uploadStatus.innerHTML = 'text sent successfully';
+                } 
+            })
+            .catch(function(error) {
+                uploadStatus.innerHTML = "Error! (too many requests or printing turned off)"
+            });
     }
 
-    uploadForm.addEventListener('submit', function(event) {
-        console.log('[EVENT] form submit triggered');
+
+
+
+    uploadForm.addEventListener('submitImage', function(event) {
         event.preventDefault();
 
         const imageFileInput = document.getElementById('fileInput');
-        const titleInput = document.getElementById('imageTitle');
 
         if (!imageFileInput) {
-            console.error('[ERROR] imageFile input not found');
             return;
         }
 
@@ -30,17 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const file = imageFileInput.files[0];
-        const filename = titleInput.value.trim() || 'name';
 
         if (!['image/jpeg', 'image/png'].includes(file.type)) {
             uploadStatus.innerHTML = 'file must be JPG, JPEG, or PNG';
             return;
         }
-
-        console.log('[FILE] name:', file.name);
-        console.log('[FILE] size (bytes):', file.size);
-        console.log('[FILE] type:', file.type);
-        console.log('[META] filename used:', filename);
 
         uploadStatus.innerHTML = 'converting image to base64...';
 
@@ -56,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const requestBody = {
                 user: "frank",
-                filename: filename,
+                filename: "Name",
                 fileBase64: base64String
             };
 
