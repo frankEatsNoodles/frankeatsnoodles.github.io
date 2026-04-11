@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (!textInput.value.trim()){
-            uploadStatus.innerHTML = "no text";
+            uploadStatus.innerHTML = "no text :(";
             return;
         }
 
@@ -62,8 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         if (!imageFileInput.files || imageFileInput.files.length === 0) {
-            console.warn('[VALIDATION] no file selected');
-            uploadStatus.innerHTML = 'image please';
+            uploadStatus.innerHTML = "image please :(";
             return;
         }
 
@@ -79,12 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const reader = new FileReader();
 
         reader.onload = function() {
-            console.log('[FILEREADER] load success');
 
             const result = reader.result;
             const base64String = result.substring(result.indexOf(',') + 1);
-
-            console.log('[BASE64] length:', base64String.length);
 
             const requestBody = {
                 user: "frank",
@@ -100,8 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(requestBody)
             })
             .then(function(response) {
-                console.log('[RESPONSE] status:', response.status);
-                console.log('[RESPONSE] ok:', response.ok);
 
                 if (response.ok) {
                     uploadStatus.innerHTML = 'image sent successfully';
@@ -113,11 +107,9 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         reader.onerror = function(err) {
-            console.error('[FILEREADER ERROR]', err);
             uploadStatus.innerHTML = 'failed to read file';
         };
 
-        console.log('[FILEREADER] starting readAsDataURL');
         reader.readAsDataURL(file);
     });
 });
