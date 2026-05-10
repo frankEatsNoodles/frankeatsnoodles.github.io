@@ -1,10 +1,35 @@
 const apiUrl = "https://desktop-ojk12ss.tailb5236b.ts.net/print";
 
+let currentIdempotencyKey = null;
+
+function generateUUID() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
 
     const uploadForm = document.getElementById('uploadForm');
     const uploadText = document.getElementById("uploadText");
     const uploadStatus = document.getElementById('uploadStatus');
+    const imageFileInput = document.getElementById('fileInput');
+
+    //Generate uuid when user uploads image
+    if (imageFileInput) {
+        imageFileInput.addEventListener('change', function(event) {
+            if (this.files && this.files.length > 0) {
+                currentIdempotencyKey = generateUUID();
+                console.log('New UUID generated for uploaded file:', currentIdempotencyKey);
+                uploadStatus.innerHTML = 'File selected - ready to submit';
+            } else {
+                currentIdempotencyKey = null;
+            }
+        });
+    }
 
     // Text form submission
     uploadText.addEventListener("submit", function(event) {
@@ -31,7 +56,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const requestBody = {
             user: "frank",
             filename: "Name",
-            fileBase64: base64String
+            fileBase64: base64String,
+            idempotencyKey: currentIdempotencyKey
         };
 
         fetch(apiUrl, {
