@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', function() {
             const requestBody = {
                 user: "frank",
                 filename: "Name",
-                fileBase64: base64String
             };
 
             fetch(apiUrl, {
