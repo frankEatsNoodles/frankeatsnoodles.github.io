@@ -44,7 +44,25 @@
 <form id="uploadText" enctype="multipart/form-data" style="display: inline-block; border: 2px solid #333; padding: 20px; margin-bottom: 20px; border-radius: 8px; background-color: #f9f9f9; width: 300px;">
   <label>send text:</label>
   <br><br>
-  <textarea id="userText" name="userText" rows="4" style="width: 100%;" placeholder="Enter your text here..."></textarea>
+  <textarea 
+  id="userText"
+  maxlength="1000"
+  rows="4"
+  style="width: 100%;">
+</textarea>
+
+<div>
+  <span id="count">0</span> / 1000
+</div>
+
+<script>
+const textarea = document.getElementById('userText');
+const count = document.getElementById('count');
+
+textarea.addEventListener('input', () => {
+  count.textContent = textarea.value.length;
+});
+</script>
   <br><br>
   <button type="submit">Send message!</button>
 </form>
