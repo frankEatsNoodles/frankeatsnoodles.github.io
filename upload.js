@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
             user: "frank",
             filename: "Name",
             fileBase64: base64String,
-            idempotencyKey: currentIdempotencyKey
+            idempotencyKey: base64String
         };
 
         fetch(apiUrl, {
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 user: "frank",
                 filename: "Name",
                 fileBase64: base64String,
-                idempotencyKey: base64String
+                idempotencyKey: currentIdempotencyKey
             };
 
             fetch(apiUrl, {
