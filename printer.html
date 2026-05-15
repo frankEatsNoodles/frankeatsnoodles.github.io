@@ -68,6 +68,71 @@ textarea.addEventListener('input', () => {
 </form>
 <p id="fileNameDisplay"></p>
 <div class="row"></div>
+<p>how it works!</p>
+<a style="background:none; text-decoration:none; color:inherit; display:inline-block;">
+<pre style="margin:0; font-family:monospace; line-height:1.2; white-space:pre; text-align:left;">
+┌──────────────────────────────────────────────┐
+│                Client Device                 │
+│                                              │
+│  Browser / Mobile Device                     │
+│  User submits:                               │
+│   • Text                                     │
+│   • Images                                   │
+└──────────────────────┬───────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────┐
+│           GitHub Pages Web UI                │
+│                                              │
+│  Static Frontend                             │
+│   • HTML                                     │
+│   • JavaScript                               │
+│                                              │
+│  Frontend Logic                              │
+│   • Image upload handling                    │
+│   • Text submission                          │
+│   • Fetch API requests                       │
+└──────────────────────┬───────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────┐
+│             Tailscale Network                │
+│                                              │
+│   • Tailscale Funnel                         │
+│   • TCP Proxy                                │
+│   • Encrypted secure tunnel                  │
+└──────────────────────┬───────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────┐
+│      Self-Hosted Python FastAPI API          │
+│                                              │
+│                REST API                      │
+│                 /print                       │
+│                                              │
+│  Backend Controls                            │
+│   • CORS handling                            │
+│   • Rate limiting                            │
+│   • Idempotency protection                   │
+│   • Request validation                       │
+└──────────────────────┬───────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────┐
+│              Print Queue Layer               │
+│                                              │
+│   • Queue                                    │
+│   • Sequential processing                    │
+└──────────────────────┬───────────────────────┘
+                       │
+                       ▼
+┌──────────────────────────────────────────────┐
+│             Thermal Receipt Printer          │
+│                                              │
+│  Physical thermal paper output               │
+└──────────────────────────────────────────────┘
+</pre>
+</a>
 </div>
 
   <div style="text-align: center;">
