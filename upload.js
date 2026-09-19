@@ -1,4 +1,3 @@
-//const apiUrl = "https://desktop-elqncor.tailb5236b.ts.net/print";
 const apiUrl = "https://desktop-2b6shnm.tailb5236b.ts.net/print";
 let currentIdempotencyKey = null;
 
