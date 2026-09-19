@@ -1,0 +1,74 @@
+.projects-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+    text-align: left;
+}
+
+.project-box {
+    border: 2px solid black;
+    padding: 20px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 4px 4px 0px black;
+}
+
+.leaderboard-box {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.leaderboard-box h2 {
+    margin-top: 0;
+    text-align: left;
+}
+
+.leaderboard-header,
+.leaderboard-row {
+    display: grid;
+    grid-template-columns: 60px 80px 1fr 120px;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    box-sizing: border-box;
+}
+
+.leaderboard-header {
+    font-weight: bold;
+    border-bottom: 2px solid black;
+}
+
+.leaderboard-row {
+    border-bottom: 1px solid #ccc;
+    will-change: transform;
+}
+
+.rank {
+    text-align: center;
+    font-weight: bold;
+}
+
+.route-id {
+    width: 50px;
+    padding: 8px 12px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.route-name {
+    text-align: left;
+}
+
+.speed {
+    text-align: right;
+    font-weight: bold;
+}
+
+.leaderboard-description {
+    margin-bottom: 0;
+    margin-top: 20px;
+    font-size: 14px;
+}
