@@ -26,11 +26,12 @@
 .leaderboard-header,
 .leaderboard-row {
     display: grid;
-    grid-template-columns: 60px 80px 1fr 120px;
+    grid-template-columns: 60px 80px minmax(0, 1fr) 120px;
     align-items: center;
     gap: 10px;
     padding: 12px 15px;
     box-sizing: border-box;
+    width: 100%;
 }
 
 .leaderboard-header {
@@ -60,6 +61,16 @@
 
 .route-name {
     text-align: left;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.route-name::-webkit-scrollbar {
+    display: none;
 }
 
 .speed {
@@ -71,4 +82,83 @@
     margin-bottom: 0;
     margin-top: 20px;
     font-size: 14px;
+}
+
+
+/* Tablets */
+@media (max-width: 700px) {
+    .projects-container {
+        width: 94%;
+        margin: 20px auto;
+    }
+
+    .project-box {
+        padding: 15px;
+    }
+
+    .leaderboard-header,
+    .leaderboard-row {
+        grid-template-columns: 45px 60px minmax(0, 1fr) 80px;
+        gap: 6px;
+        padding: 9px 10px;
+    }
+
+    .leaderboard-header,
+    .leaderboard-row {
+        font-size: 0.9rem;
+    }
+
+    .route-id {
+        width: 45px;
+        padding: 6px 8px;
+    }
+
+    .leaderboard-description {
+        font-size: 13px;
+        margin-top: 12px;
+    }
+}
+
+
+/* Phones */
+@media (max-width: 500px) {
+    .projects-container {
+        width: 96%;
+        margin: 15px auto;
+    }
+
+    .project-box {
+        padding: 10px;
+        margin-bottom: 15px;
+    }
+
+    .leaderboard-box h2 {
+        font-size: 1rem;
+    }
+
+    .leaderboard-header,
+    .leaderboard-row {
+        grid-template-columns: 28px 45px minmax(0, 1fr) 55px;
+        gap: 4px;
+        padding: 7px 5px;
+        font-size: 0.75rem;
+    }
+
+    .route-id {
+        width: 40px;
+        padding: 5px 4px;
+    }
+
+    .leaderboard-description {
+        font-size: 11px;
+        margin-top: 8px;
+    }
+
+    .leaderboard-header {
+        border-bottom-width: 1px;
+    }
+
+    .leaderboard-row {
+        min-height: 28px;
+    }
 }
