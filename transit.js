@@ -333,7 +333,7 @@ function updateRouteFilter(data) {
 }
 
 //initial setup
-loadFleetFilters();
+await loadFleetFilters();
 update();
 
 
